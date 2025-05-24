@@ -1,5 +1,7 @@
 # Luxembourgish Vowel Classifier
 
+This is a proof of concept to train an acoustic classifier for vowels. The ultimate aim is to use this in an app to assess pronunciations of language learners.
+
 An AI-powered vowel classification web application for Luxembourgish using a fine-tuned HuBERT transformer model. This Streamlit application provides real-time vowel classification with multiple input methods.
 
 ## 🎯 Features
