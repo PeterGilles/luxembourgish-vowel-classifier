@@ -1,123 +1,219 @@
 # Luxembourgish Vowel Classifier
 
-![Vowel Classifier Demo](https://img.shields.io/badge/demo-vowel_classifier-blue?style=for-the-badge)
-![HuBERT Model](https://img.shields.io/badge/model-HuBERT-green?style=for-the-badge)
-![License: MIT](https://img.shields.io/badge/license-MIT-yellow?style=for-the-badge)
+An AI-powered vowel classification system for Luxembourgish using state-of-the-art machine learning models. This project combines traditional CNN architectures with modern transformer-based models (HuBERT) to classify vowel sounds with high accuracy.
 
-A deep learning-based vowel classification system for Luxembourgish vowels using the HuBERT model. This application can identify 9 Luxembourgish vowels from audio input.
+## 🎯 Features
 
-## 🎙️ Features
-
-- **Vowel Classification**: Identify 9 Luxembourgish vowels from audio input
-- **Interactive Interface**: User-friendly Streamlit web application 
-- **Multiple Input Methods**:
+- **Multiple Model Architectures**: CNN-based and HuBERT transformer-based vowel classifiers
+- **Interactive Web Interface**: Streamlit application with three input methods:
   - Upload WAV files
-  - Record audio directly from microphone
-  - Select from example vowels
-  - Generate synthetic vowels with customizable formant frequencies
-- **Visualization**: Clear visualization of confidence scores and predictions
-- **Synthetic Vowel Generation**: Create vowel sounds based on customizable formant frequencies
+  - Record live from microphone
+  - Use pre-existing example vowels
+- **Real-time Classification**: Instant vowel classification with confidence scores
+- **Debug Mode**: Detailed audio processing information and waveform visualization
+- **Model Comparison**: Side-by-side comparison of different classifier approaches
 
-## 📋 Supported Vowels
+## 🔊 Supported Vowels
 
-The classifier can identify the following Luxembourgish vowels:
+The system classifies 9 Luxembourgish vowel categories:
+- `aː` (long a)
+- `eː` (long e) 
+- `oː` (long o)
+- `ɑɪ` (ai diphthong)
+- `æːɪ` (long ae + i)
+- `ɜɪ` (schwa + i)
+- `əʊ` (schwa + ou)
+- `ɑʊ` (a + ou)
+- `æːʊ` (long ae + ou)
 
-| IPA Symbol | Description             |
-|------------|-------------------------|
-| aː         | Long a                  |
-| eː         | Long e                  |
-| oː         | Long o                  |
-| æːɪ        | Diphthong (æː + ɪ)      |
-| æːʊ        | Diphthong (æː + ʊ)      |
-| ɑɪ         | Diphthong (ɑ + ɪ)       |
-| ɑʊ         | Diphthong (ɑ + ʊ)       |
-| əʊ         | Diphthong (ə + ʊ)       |
-| ɜɪ         | Diphthong (ɜ + ɪ)       |
-
-## 🔧 Installation
+## 🚀 Quick Start
 
 ### Prerequisites
 
 - Python 3.8+
-- pip (Python package installer)
+- R (for data preparation)
+- Git
 
-### Setup
+### Installation
 
-1. **Clone the repository**:
-   ```
-   git clone https://github.com/yourusername/luxembourgish-vowel-classifier.git
-   cd luxembourgish-vowel-classifier
-   ```
-
-2. **Create a virtual environment (recommended)**:
-   ```
-   python -m venv venv
-   ```
-
-3. **Activate the virtual environment**:
-   - On Windows:
-     ```
-     venv\Scripts\activate
-     ```
-   - On macOS/Linux:
-     ```
-     source venv/bin/activate
-     ```
-
-4. **Install dependencies**:
-   ```
-   pip install -r requirements.txt
-   ```
-
-## 🚀 Usage
-
-### Running the Streamlit App
-
+1. Clone the repository:
+```bash
+git clone https://github.com/PeterGilles/luxembourgish-vowel-classifier.git
+cd luxembourgish-vowel-classifier
 ```
+
+2. Set up Python environment:
+```bash
+python -m venv .venv
+source .venv/bin/activate  # On Unix/macOS
+.venv\Scripts\activate     # On Windows
+pip install -r requirements_streamlit.txt
+```
+
+3. Set up R environment (for data preparation):
+```bash
+Rscript -e "renv::restore()"
+```
+
+### Running the Applications
+
+#### HuBERT-based Classifier (Recommended)
+```bash
 streamlit run streamlit_hubert.py
 ```
 
-This will launch the application in your default web browser.
+#### CNN-based Classifier
+```bash
+streamlit run streamlit_3.py
+```
 
-### Using the App
+#### Model Comparison
+```bash
+streamlit run streamlit_compare.py
+```
 
-1. **Choose input method**:
-   - Upload a WAV file
-   - Record a vowel using your microphone
-   - Select from example vowels
-   - Generate a synthetic vowel
+## 📁 Project Structure
 
-2. **View prediction results**:
-   - The app will display the predicted vowel
-   - Confidence scores for all vowel classes
-   - Visual bar chart representation
+```
+luxembourgish-vowel-classifier/
+├── streamlit_hubert.py          # Main HuBERT-based Streamlit app
+├── streamlit_3.py               # CNN-based Streamlit app
+├── streamlit_compare.py         # Model comparison app
+├── vowel_classifier.py          # CNN model training script
+├── finetune_huBERT.py          # HuBERT fine-tuning script
+├── finetune_hubert_improved.py # Improved HuBERT training
+├── vowel_classifier_prep.R     # R script for data preparation
+├── upload2HF.py               # Hugging Face model upload
+├── exported_vowels/           # Audio data directory
+├── requirements_streamlit.txt # Python dependencies
+├── requirements_hf.txt       # Hugging Face specific deps
+└── README.md                 # This file
+```
 
-3. **Synthetic Vowel Generation**:
-   - Select predefined vowels or customize formants
-   - Adjust F1, F2, and F3 frequencies
-   - Control duration
-   - Generate and test vowel sounds
+## 🔬 Model Architecture
 
-## 🧠 Model Details
+### HuBERT Model
+- **Base Model**: Pre-trained HuBERT from Hugging Face
+- **Fine-tuning**: Sequence classification head for vowel categories
+- **Features**: Self-supervised speech representation learning
+- **Advantages**: Better generalization, state-of-the-art performance
 
-This project uses a fine-tuned HuBERT (Hidden-Unit BERT) model for vowel classification. HuBERT is a self-supervised speech representation model that learns by predicting masked units.
+### CNN Model
+- **Architecture**: Convolutional layers with batch normalization
+- **Input**: Mel spectrograms from audio
+- **Features**: Traditional computer vision approach adapted for audio
+- **Advantages**: Faster inference, smaller model size
 
-- **Base Model**: facebook/hubert-base-ls960
-- **Training Data**: Vowel segments (90-300ms) from the Schnëssen corpus
-- **Model Repository**: [pgilles/vowel-classifier-hubert](https://huggingface.co/pgilles/vowel-classifier-hubert)
+## 🎵 Data Pipeline
 
-## 🛠️ Technical Components
+1. **Audio Extraction**: `vowel_classifier_prep.R` extracts vowel segments from the Schnëssen corpus
+2. **Feature Processing**: 
+   - CNN: Converts audio to mel spectrograms
+   - HuBERT: Uses pre-trained audio feature extractor
+3. **Training**: Both models trained with class balancing for uneven vowel distributions
+4. **Deployment**: Models uploaded to Hugging Face Hub for easy deployment
 
-- **Fine-tuning Script**: `finetune_hubert_improved.py` for training custom models
-- **Streamlit Application**: `streamlit_hubert.py` for interactive usage
-- **Upload Script**: `upload_hubert.py` for pushing models to Hugging Face
+## 🖥️ Web Interface Features
 
-## 📝 License
+### Input Methods
+- **File Upload**: Support for WAV audio files
+- **Live Recording**: Browser-based microphone recording using `st_audiorec`
+- **Example Vowels**: Pre-loaded sample vowels for testing
 
-This project is released under the [MIT License](LICENSE).
+### Output
+- **Prediction**: Primary vowel classification
+- **Confidence Score**: Model certainty percentage
+- **Accuracy Check**: For example vowels, shows if prediction matches true label
+- **Debug Information**: Optional detailed processing information
 
-## 🙏 Acknowledgements
+## 🛠️ Development
 
-- The [Schnëssen](https://infolux.uni.lu/schnessen/) project for providing the audio corpus.
-- The [HuggingFace Transformers](https://huggingface.co/transformers/) library for providing pre-trained models.
-- The [Streamlit](https://streamlit.io/) team for their excellent interactive app framework.
+### Training New Models
+
+#### CNN Model
+```bash
+python vowel_classifier.py
+```
+
+#### HuBERT Model
+```bash
+python finetune_huBERT.py
+```
+
+### Data Preparation
+```bash
+Rscript vowel_classifier_prep.R
+```
+
+### Model Upload to Hugging Face
+```bash
+python upload2HF.py
+```
+
+## 📊 Performance
+
+The HuBERT-based model typically achieves higher accuracy due to its pre-training on large-scale speech data and self-supervised learning approach. The CNN model offers faster inference and is suitable for resource-constrained environments.
+
+## 🔧 Configuration
+
+### Model Settings
+- **Sample Rate**: 16kHz (standardized for both models)
+- **Audio Length**: 90-300ms vowel segments
+- **Batch Size**: Configurable in training scripts
+- **Learning Rate**: Optimized for each architecture
+
+### Streamlit Configuration
+- **File Watcher**: Disabled for torch compatibility
+- **Debug Mode**: Toggle in sidebar for detailed information
+- **Auto-prediction**: Enabled for seamless user experience
+
+## 🚀 Deployment
+
+### Local Development
+Run any of the Streamlit applications locally for development and testing.
+
+### Production Deployment
+The applications can be deployed to:
+- Streamlit Cloud
+- Heroku
+- Docker containers
+- Any Python web hosting service
+
+See deployment-specific documentation in:
+- `DEPLOYMENT_INSTRUCTIONS.md`
+- `STREAMLIT_DEPLOYMENT.md`
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **Schnëssen Corpus**: Training data source for Luxembourgish vowels
+- **Hugging Face**: Pre-trained models and hosting platform
+- **emuR Package**: R tools for phonetic data manipulation
+- **Streamlit**: Web application framework
+- **PyTorch**: Deep learning framework
+
+## 📞 Contact
+
+Peter Gilles - [@PeterGilles](https://github.com/PeterGilles)
+
+Project Link: [https://github.com/PeterGilles/luxembourgish-vowel-classifier](https://github.com/PeterGilles/luxembourgish-vowel-classifier)
+
+## 🔗 Related Models
+
+- [HuBERT Model on Hugging Face](https://huggingface.co/pgilles/vowel-classifier-hubert)
+- [Fine-tuned Models Collection](https://huggingface.co/pgilles)
+
+---
+
+**Note**: This project is part of research in computational phonetics and Luxembourgish language technology. For academic use, please cite appropriately.
