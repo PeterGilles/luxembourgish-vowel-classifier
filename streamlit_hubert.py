@@ -38,13 +38,13 @@ SAMPLE_RATE = 16000
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Try to find the examples directory
-EXAMPLE_DIR = "example_vowels"
+EXAMPLE_DIR = "examples"
 if not os.path.exists(EXAMPLE_DIR):
-    # Try relative paths for different environments
+    # Try alternative paths
     possible_paths = [
         "exported_vowels",        # Original folder
-        "../example_vowels",      # One directory up
-        "../../example_vowels",   # Two directories up
+        "example_vowels",         # Alternative name
+        "../examples",            # One directory up
     ]
     
     for path in possible_paths:

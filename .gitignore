@@ -1,12 +1,4 @@
-# R specific
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
-*.Rproj
-renv/
-
-# Byte-compiled / optimized / DLL files
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
@@ -24,66 +16,55 @@ parts/
 sdist/
 var/
 wheels/
+pip-wheel-metadata/
+share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
-# Distribution / packaging
+# Virtual environments
 .env
+.venv
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
 
-# Local development settings
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# Jupyter Notebook
-.ipynb_checkpoints
-*.ipynb
-
-# VS Code
+# IDEs
 .vscode/
-*.code-workspace
-
-# PyCharm
 .idea/
-*.iml
-*.iws
-*.ipr
-*.iws
+*.swp
+*.swo
+*~
 
-# macOS
+# OS
 .DS_Store
-.AppleDouble
-.LSOverride
-Icon
+.DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
-
-# Windows
-Thumbs.db
 ehthumbs.db
-Desktop.ini
-$RECYCLE.BIN/
-
-# Model files and large data
-# *.pt - Commented out to include the model files in the repo
-fine_tuned_*/
-results*/
-checkpoints/
-debug/
-temp/
-
-# Audio files
-# Uncomment the line below if you don't want to track audio examples
-# exported_vowels/
+Thumbs.db
 
 # Streamlit
 .streamlit/
-.streamlit/secrets.toml
+
+# Local data (keep examples but ignore large datasets)
+exported_vowels/
+luxembourgish_vowel_classifier/
+.gradio/
+
+# Model files (if large)
+*.pt
+*.pth
+*.pkl
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+EOF < /dev/null
