@@ -5,6 +5,7 @@ This is a proof of concept to train an acoustic classifier for vowels. The ultim
 
 An AI-powered vowel classification web application for Luxembourgish using a fine-tuned HuBERT transformer model. This Streamlit application provides real-time vowel classification with multiple input methods.
 
+
 ## 🎯 Features
 
 - **HuBERT Transformer Model**: State-of-the-art speech recognition model fine-tuned for Luxembourgish vowels
@@ -76,11 +77,39 @@ The application will open in your browser at `http://localhost:8501`.
 
 ## 🔬 Model Details
 
-- **Base Model**: Pre-trained HuBERT from Hugging Face
+- **Base Model**: Pre-trained HuBERT from Hugging Face (`facebook/hubert-base-ls960`)
 - **Fine-tuning**: Custom sequence classification head for Luxembourgish vowels
-- **Training Data**: Vowel segments from the Schnëssen corpus
+- **Training Data**: 27,283 vowel segments from the Schnëssen corpus with the following distribution:
+  - `aː` (long a): 7,905 samples
+  - `eː` (long e): 4,812 samples  
+  - `oː` (long o): 3,703 samples
+  - `ɜɪ` (schwa + i): 3,384 samples
+  - `ɑɪ` (ai diphthong): 2,588 samples
+  - `æːɪ` (long ae + i): 1,924 samples
+  - `əʊ` (schwa + ou): 1,157 samples
+  - `ɑʊ` (a + ou): 1,001 samples
+  - `æːʊ` (long ae + ou): 809 samples
 - **Sample Rate**: 16kHz
-- **Input Length**: 90-300ms audio segments
+- **Input Length**: 90-300ms audio segments (max 250ms for training)
+- **Training Configuration**:
+  - **Epochs**: 8 (default)
+  - **Batch Size**: 8
+  - **Learning Rate**: 5e-5
+  - **Optimizer**: AdamW with weight decay (0.01)
+  - **Augmentation**: Time stretching (0-20% speed variation)
+  - **Train/Validation Split**: 80/20
+  - **Loss Function**: Cross-entropy with optional class weighting and label smoothing (0.1)
+- **Audio Processing**:
+  - **Feature Extraction**: Wav2Vec2FeatureExtractor with optimized parameters
+  - **FFT Size**: 1024
+  - **Hop Length**: 160 samples
+  - **Window Length**: 400 samples
+  - **Padding**: Max length with consistent strategy
+- **Training Features**:
+  - Automatic masking disabled for vowel classification
+  - Class weighting option for imbalanced data
+  - Best model selection based on validation accuracy
+  - Confusion matrix and classification report generation
 
 ## 🎵 Audio Requirements
 
@@ -98,40 +127,6 @@ The application uses:
 - **Librosa**: Audio processing and analysis
 - **PyTorch**: Deep learning framework
 - **st_audiorec**: Browser-based audio recording
-
-## 📁 Files
-
-- `streamlit_hubert.py`: Main Streamlit application
-- `requirements.txt`: Python dependencies
-- `exported_vowels/`: Example vowel audio files
-- `README.md`: This documentation
-
-## 🚀 Deployment
-
-The application can be deployed to:
-- **Streamlit Cloud**: Connect your GitHub repository
-- **Heroku**: Use the provided configuration
-- **Docker**: Build and run in containers
-- **Local**: Run on any machine with Python
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/new-feature`)
-3. Commit your changes (`git commit -m 'Add new feature'`)
-4. Push to the branch (`git push origin feature/new-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
-## 🙏 Acknowledgments
-
-- **Schnëssen Corpus**: Source of training data for Luxembourgish vowels
-- **Hugging Face**: Pre-trained HuBERT model and hosting platform
-- **Streamlit**: Web application framework
-- **Research Community**: Advances in speech recognition and phonetics
 
 ## 📞 Contact
 
