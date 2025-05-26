@@ -23,12 +23,12 @@ The system classifies 9 Luxembourgish vowel categories:
 - `aː` (long a)
 - `eː` (long e) 
 - `oː` (long o)
-- `ɑɪ` (ai diphthong)
-- `æːɪ` (long ae + i)
-- `ɜɪ` (schwa + i)
-- `əʊ` (schwa + ou)
-- `ɑʊ` (a + ou)
-- `æːʊ` (long ae + ou)
+- `ɑɪ` 
+- `æːɪ` 
+- `ɜɪ` 
+- `əʊ` 
+- `ɑʊ` 
+- `æːʊ` 
 
 ## 🚀 Quick Start
 
@@ -80,15 +80,15 @@ The application will open in your browser at `http://localhost:8501`.
 - **Base Model**: Pre-trained HuBERT from Hugging Face (`facebook/hubert-base-ls960`)
 - **Fine-tuning**: Custom sequence classification head for Luxembourgish vowels
 - **Training Data**: 27,283 vowel segments from the Schnëssen corpus with the following distribution:
-  - `aː` (long a): 7,905 samples
-  - `eː` (long e): 4,812 samples  
-  - `oː` (long o): 3,703 samples
-  - `ɜɪ` (schwa + i): 3,384 samples
-  - `ɑɪ` (ai diphthong): 2,588 samples
-  - `æːɪ` (long ae + i): 1,924 samples
-  - `əʊ` (schwa + ou): 1,157 samples
-  - `ɑʊ` (a + ou): 1,001 samples
-  - `æːʊ` (long ae + ou): 809 samples
+  - `aː`: 7,905 samples
+  - `eː`: 4,812 samples  
+  - `oː`: 3,703 samples
+  - `ɜɪ`: 3,384 samples
+  - `ɑɪ`: 2,588 samples
+  - `æːɪ`: 1,924 samples
+  - `əʊ`: 1,157 samples
+  - `ɑʊ`: 1,001 samples
+  - `æːʊ`: 809 samples
 - **Sample Rate**: 16kHz
 - **Input Length**: 90-300ms audio segments (max 250ms for training)
 - **Training Configuration**:
