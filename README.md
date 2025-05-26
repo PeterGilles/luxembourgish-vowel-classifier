@@ -1,6 +1,6 @@
 # Luxembourgish Vowel Classifier
 
-This is a proof of concept to train an acoustic classifier for vowels. The ultimate aim is to use this in an app to assess pronunciations of language learners.
+This is a proof of concept to train an acoustic classifier for vowels. The ultimate aim is to use this in an app to assess pronunciations of language learners. The project focuses specifically on Luxembourgish vowels, which present unique challenges due to their distinctive phonetic characteristics and the language's complex vowel system. By leveraging state-of-the-art machine learning techniques, this classifier aims to provide accurate and real-time feedback to language learners, helping them improve their pronunciation of Luxembourgish vowels. The system is designed to be both educational and practical, serving as a valuable tool for language learning and phonetic research.
 <img width="1259" alt="Bildschirmfoto 2025-05-24 um 22 11 59" src="https://github.com/user-attachments/assets/e688311e-0cde-4300-a94f-98e57f282fb9" />
 
 An AI-powered vowel classification web application for Luxembourgish using a fine-tuned HuBERT transformer model. This Streamlit application provides real-time vowel classification with multiple input methods.
@@ -138,7 +138,3 @@ Project Link: [https://github.com/PeterGilles/luxembourgish-vowel-classifier](ht
 
 The fine-tuned HuBERT model is available on Hugging Face:
 [pgilles/vowel-classifier-hubert](https://huggingface.co/pgilles/vowel-classifier-hubert)
-
----
-
-**Note**: This application is part of computational phonetics research for Luxembourgish language technology.
